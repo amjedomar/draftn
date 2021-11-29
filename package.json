@@ -13,10 +13,22 @@
     "format": "prettier . --write",
     "lint": "eslint . --ext .ts,.tsx,.js"
   },
+  "dependencies": {
+    "@draft-js-plugins/editor": "^4.1.0",
+    "@draft-js-plugins/image": "^4.1.2",
+    "clsx": "^1.1.1",
+    "draft-js-list-plugin": "^1.0.2",
+    "draftjs-filters": "^2.5.0"
+  },
+  "peerDependencies": {
+    "draft-js": "^0.11.7",
+    "react": "^17.0.2"
+  },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.0.1",
     "@rollup/plugin-node-resolve": "^13.0.6",
     "@rollup/plugin-typescript": "^8.3.0",
+    "@types/draft-js": "^0.11.6",
     "@types/node": "^16.11.10",
     "@types/react": "^17.0.37",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
