@@ -11,6 +11,10 @@ const phrases = {
     ar: 'الرابط الذي أدخلته غير صالح',
     en: 'The entered link is invalid',
   },
+  invalidImage: {
+    ar: 'الصورة التي رفعتها غير صالحة',
+    en: 'The entered link is invalid',
+  },
 };
 
 export default phrases;

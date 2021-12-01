@@ -89,26 +89,31 @@ class Toolbar extends Component<ToolbarProps, ToolbarState> {
           fileType,
           file,
           (imageUrl: string) => {
-            let result: EditorState;
+            let result: EditorState | undefined;
 
+            const fileExt = parseExt(file.name);
+            
             if (fileType === 'image') {
-              const fileExt = parseExt(file.name);
-
-              if (imageExtensions && !imageExtensions.includes(fileExt)) {
-                focusEditor();
-                return;
+              if (
+                (!imageExtensions || imageExtensions.includes(fileExt)) &&
+                (!imageSrc || new RegExp(imageSrc).test(imageUrl))
+              ) {
+                result = plugins.imagePlugin.addImage(
+                  editorState,
+                  imageUrl,
+                  {},
+                );
               }
+            }
 
-              if (imageSrc && !new RegExp(imageSrc).test(imageSrc)) {
-                focusEditor();
-                return;
-              }
-
-              result = plugins.imagePlugin.addImage(editorState, imageUrl, {});
+            if (result) {
+              onChange(result);
+            } else {
+              alert(phrases.invalidImage[lang]);
             }
 
             this.setState({ isUploading: false }, () => {
-              onChange(result);
+              focusEditor();
             });
           },
           () => {
@@ -142,7 +147,7 @@ class Toolbar extends Component<ToolbarProps, ToolbarState> {
   };
 
   render() {
-    const { editorState, restrictions } = this.props;
+    const { editorState, restrictions, lang } = this.props;
     const { isUploading } = this.state;
     const currentInlineStyles = editorState.getCurrentInlineStyle();
     const currentBlockType = RichUtils.getCurrentBlockType(editorState);
@@ -181,6 +186,7 @@ class Toolbar extends Component<ToolbarProps, ToolbarState> {
             onPick={this.handleFilePick('image')}
             id="image-input"
             title="Ctrl+G"
+            lang={lang}
             extensions={restrictions?.imageExtensions}
           >
             <ImageIcon />

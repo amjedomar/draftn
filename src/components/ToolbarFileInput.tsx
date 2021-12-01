@@ -9,11 +9,14 @@ import {
 import parseExt from '../utils/parseExt';
 import toolbarButtonStyles from '../styles/ToolbarButton.css';
 import styles from '../styles/ToolbarFileInput.css';
+import phrases from '../data/phrases';
+import { DraftnLang } from '..';
 
 export type PickHandler = (file: File) => void;
 
 interface ToolbarFileInputProps extends HTMLProps<HTMLInputElement> {
   id: string;
+  lang: DraftnLang;
   onPick: PickHandler;
   extensions?: string[];
   children: ReactNode;
@@ -21,7 +24,7 @@ interface ToolbarFileInputProps extends HTMLProps<HTMLInputElement> {
 
 const ToolbarFileInput = forwardRef(
   (props: ToolbarFileInputProps, ref: Ref<HTMLInputElement>) => {
-    const { className, id, onPick, children, extensions, ...inputProps } =
+    const { className, id, onPick, children, lang, extensions, ...inputProps } =
       props;
 
     const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -33,6 +36,8 @@ const ToolbarFileInput = forwardRef(
 
       if (!extensions || extensions.includes(fileExt)) {
         onPick(file);
+      } else {
+        alert(phrases.invalidImage[lang]);
       }
 
       e.target.value = '';
