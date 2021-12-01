@@ -1,0 +1,44 @@
+.root {
+  width: 55px;
+  height: 55px;
+  color: #4caf50;
+  animation: spin 1.4s linear infinite;
+  display: inline-block;
+}
+
+.svg {
+  display: block;
+}
+
+.svgCircle {
+  animation: spinCircular 1.4s ease-in-out infinite;
+  stroke-dasharray: 80px, 200px;
+  stroke-dashoffset: 0;
+  stroke: currentColor;
+}
+
+@keyframes spin {
+  0% {
+    transform-origin: 50% 50%;
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinCircular {
+  0% {
+    stroke-dasharray: 1px, 200px;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 100px, 200px;
+    stroke-dashoffset: -15px;
+  }
+
+  100% {
+    stroke-dasharray: 100px, 200px;
+    stroke-dashoffset: -125px;
+  }
+}

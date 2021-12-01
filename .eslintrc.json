@@ -6,7 +6,7 @@
   "globals": {
     "NodeJS": true
   },
-  "extends": ["plugin:react/recommended", "airbnb"],
+  "extends": ["plugin:react/recommended", "airbnb", "prettier"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
@@ -19,13 +19,34 @@
   "rules": {
     "react/jsx-filename-extension": ["error", { "extensions": [".tsx"] }],
     "import/extensions": "off",
-    "import/no-unresolved": "off",
+    "import/no-unresolved": [
+      "error",
+      {
+        "ignore": ["react", "draft-js"]
+      }
+    ],
     "import/no-extraneous-dependencies": "off",
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/function-component-definition": [
+      "off",
+      { "namedComponents": "function-expression" }
+    ],
+    "no-unused-vars": "off",
+    "no-alert": "off",
+    "react/require-default-props": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "react/static-property-placement": "off"
   },
   "settings": {
     "react": {
-      "version": "latest"
+      "version": "17.0.2"
+    },
+    "import/resolver": {
+      "node": {
+        "extensions": [".ts", ".tsx"]
+      }
     }
   }
 }

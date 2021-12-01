@@ -1,0 +1,47 @@
+.root {
+  font-size: 16px;
+}
+
+.h2 {
+  font-size: 24px;
+}
+
+.h3 {
+  font-size: 20px;
+}
+
+/*
+  set one css property at least to ensure that this
+  class is exists when access this css file as module
+  and to avoid IDE warnings
+*/
+.ol {
+  font-size: inherit;
+}
+
+.ul {
+  font-size: inherit;
+}
+
+.blockquote {
+  background: #e8f5e9;
+  border-right: 0.25rem solid #4caf50;
+  padding: 0 1rem;
+}
+
+.image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.link {
+  color: #1976d2;
+  text-decoration: underline;
+  text-decoration-color: rgba(25, 118, 210, 0.4);
+  direction: ltr;
+}
+
+.link:hover {
+  text-decoration-color: #1976d2;
+}

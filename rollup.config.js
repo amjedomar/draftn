@@ -38,7 +38,12 @@ const options = {
       autoModules: false,
     }),
   ],
-  external: ['react', 'react/jsx-runtime'],
+  external: [
+    'react',
+    'react/jsx-runtime',
+    'draft-js',
+    'draft-js/dist/Draft.css',
+  ],
 };
 
 export default options;

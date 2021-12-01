@@ -1,0 +1,28 @@
+.root {
+  display: inline-block;
+  padding: 4px;
+  min-width: unset;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  line-height: 0;
+  margin-bottom: 16px;
+  background-color: #fff;
+  box-shadow: none;
+  color: #000;
+  cursor: pointer;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.root:hover {
+  background-color: '#fafafa';
+}
+
+.root.checked {
+  background: #a5d6a7;
+  border: 1px solid #a5d6a7;
+}
+
+.root:disabled {
+  color: '#bdbdbd';
+}
