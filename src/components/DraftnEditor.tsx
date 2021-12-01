@@ -65,6 +65,8 @@ const defaultProps = {
 type PropsWithDefaults = DraftnEditorProps & typeof defaultProps;
 
 class DraftnEditor extends Component<DraftnEditorProps> {
+  isChanged = false;
+
   wrapperRef = createRef<HTMLDivElement>();
 
   editorRef = createRef<Editor>();
@@ -78,11 +80,7 @@ class DraftnEditor extends Component<DraftnEditorProps> {
   };
 
   handleChange: DraftnChangeHandler = (editorState: EditorState) => {
-    const {
-      editorState: prevEditorState,
-      restrictions = {},
-      onChange,
-    } = this.props;
+    const { editorState: prevEditorState, restrictions, onChange } = this.props;
 
     const shouldFilter =
       editorState.getCurrentContent() !== prevEditorState.getCurrentContent() &&
@@ -93,6 +91,12 @@ class DraftnEditor extends Component<DraftnEditorProps> {
       : editorState;
 
     onChange(updatedEditorState);
+
+    if (!this.isChanged) {
+      setTimeout(() => {
+        this.isChanged = true;
+      }, 0);
+    }
   };
 
   handleKeyCommand = (command: EditorCommand): DraftHandleValue => {
@@ -198,9 +202,21 @@ class DraftnEditor extends Component<DraftnEditorProps> {
     }
   };
 
+  getEditorState = () => {
+    const { editorState, restrictions } = this.props;
+
+    if (this.isChanged) {
+      return editorState;
+    }
+
+    return filterEditorState(editorState, restrictions);
+  };
+
   render() {
-    const { editorState, onUploadFile, lang, restrictions, className, style } =
-      this.props as PropsWithDefaults;
+    const { onUploadFile, lang, restrictions, className, style } = this
+      .props as PropsWithDefaults;
+
+    const editorState = this.getEditorState();
 
     const langDir = lang === 'ar' ? 'rtl' : 'ltr';
 
