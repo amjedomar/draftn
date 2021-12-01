@@ -7,7 +7,7 @@ interface BackdropProps {
 }
 
 const Backdrop = ({ show }: BackdropProps) => (
-  <div className={clsx(styles.root, show ?? 'show')}>
+  <div className={clsx(styles.root, show && styles.show)}>
     <Spinner />
   </div>
 );

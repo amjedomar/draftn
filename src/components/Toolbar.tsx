@@ -45,7 +45,7 @@ class Toolbar extends Component<ToolbarProps, ToolbarState> {
     super(props);
 
     this.state = {
-      isUploading: true,
+      isUploading: false,
     };
   }
 
