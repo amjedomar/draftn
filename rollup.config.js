@@ -1,7 +1,5 @@
 import fs from 'fs';
 import path from 'path';
-import nodeResolve from '@rollup/plugin-node-resolve';
-import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
 import postcss from 'rollup-plugin-postcss';
 
@@ -28,8 +26,6 @@ const options = {
     format: 'cjs',
   },
   plugins: [
-    nodeResolve(),
-    commonjs(),
     typescript(),
     postcss({
       modules: {
@@ -38,12 +34,7 @@ const options = {
       autoModules: false,
     }),
   ],
-  external: [
-    'react',
-    'react/jsx-runtime',
-    'draft-js',
-    'draft-js/dist/Draft.css',
-  ],
+  external: (id) => !id.startsWith('.') && !path.isAbsolute(id),
 };
 
 export default options;
