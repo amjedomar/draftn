@@ -1,4 +1,6 @@
 .root {
+  display: flex;
+  flex-direction: column;
   width: 600px;
   height: 300px;
 }
@@ -7,7 +9,7 @@
   border: 1px solid #ccc;
   cursor: text;
   padding: 10px;
-  height: 100%;
+  flex-grow: 1;
   overflow-y: auto;
   overflow-x: hidden;
   border-radius: 4px;
