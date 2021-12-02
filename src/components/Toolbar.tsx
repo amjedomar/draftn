@@ -1,6 +1,7 @@
 import { Component, createRef, MouseEventHandler, RefObject } from 'react';
 import { EditorState, RichUtils } from 'draft-js';
 import { ImageEditorPlugin } from '@draft-js-plugins/image';
+import clsx from 'clsx';
 import Backdrop from './Backdrop';
 import ToolbarFileInput, { PickHandler } from './ToolbarFileInput';
 import { LinkEditorPlugin } from '../plugins/linkPlugin';
@@ -152,11 +153,13 @@ class Toolbar extends Component<ToolbarProps, ToolbarState> {
     const currentInlineStyles = editorState.getCurrentInlineStyle();
     const currentBlockType = RichUtils.getCurrentBlockType(editorState);
 
+    const langDir = lang === 'ar' ? 'rtl' : 'ltr';
+
     return (
       <>
         <Backdrop show={isUploading} />
 
-        <div className={styles.root}>
+        <div className={clsx(styles.root, styles[langDir])}>
           {inlineStyleButtons.map(({ type, icon, title }) => (
             <ToolbarButton
               key={type}

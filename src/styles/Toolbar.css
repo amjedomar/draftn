@@ -1,4 +1,20 @@
 .root {
   display: flex;
-  justify-content: center;
+  overflow-x: auto;
+}
+
+.root.rtl > *:first-child {
+  margin-right: auto;
+}
+
+.root.rtl > *:last-child {
+  margin-left: auto;
+}
+
+.root.ltr > *:first-child {
+  margin-left: auto;
+}
+
+.root.ltr > *:last-child {
+  margin-right: auto;
 }
