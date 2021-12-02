@@ -92,7 +92,7 @@ class Toolbar extends Component<ToolbarProps, ToolbarState> {
             let result: EditorState | undefined;
 
             const fileExt = parseExt(file.name);
-            
+
             if (fileType === 'image') {
               if (
                 (!imageExtensions || imageExtensions.includes(fileExt)) &&
