@@ -38,7 +38,7 @@ const filterEditorState = (
           }),
         },
       ],
-      whitespacedCharacters: ['\n', '\t', '📷'],
+      whitespacedCharacters: ['\t', '📷'],
     },
     editorState,
   );
