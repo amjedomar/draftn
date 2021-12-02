@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A neat text editor based on Draft.js",
   "main": "./dist/index.js",
+  "files": ["dist/"],
   "repository": "https://github.com/amjedomar/draftn",
   "author": "Amjed Omar <amjedomar201@gmail.com>",
   "license": "MIT",
@@ -11,7 +12,8 @@
     "dev": "rollup -c -w",
     "build": "rollup -c",
     "format": "prettier . --write",
-    "lint": "eslint . --ext .ts,.tsx,.js"
+    "lint": "eslint . --ext .ts,.tsx,.js",
+    "prepublishOnly": "yarn build"
   },
   "dependencies": {
     "@draft-js-plugins/editor": "^4.1.0",
