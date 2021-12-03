@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.0.9
+- correct the height of the editor
+
 ## v1.0.8
 - correct toolbar height when scroll appear
 
