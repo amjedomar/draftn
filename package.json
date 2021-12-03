@@ -22,6 +22,7 @@
     "@draft-js-plugins/image": "^4.1.2",
     "clsx": "^1.1.1",
     "draft-js-list-plugin": "^1.0.2",
+    "draftjs-conductor": "^2.2.0",
     "draftjs-filters": "^2.5.0",
     "tslib": "^2.3.1"
   },

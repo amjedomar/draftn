@@ -767,6 +767,11 @@ draft-js-list-plugin@^1.0.2:
   resolved "https://registry.yarnpkg.com/draft-js-list-plugin/-/draft-js-list-plugin-1.0.2.tgz#877ed5fde05f7f8963dc720398b3e8fcd2158dda"
   integrity sha512-Vqz+JCZl96TBXoaHKeam1R90xxOWjTfpK9UFmXWP90CjCe/07bMmerZW3582JXsfQkmp5pC4sI3dhPSdr9WF9Q==
 
+draftjs-conductor@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/draftjs-conductor/-/draftjs-conductor-2.2.0.tgz#8aa9e3bbc4340a06c1146c96564147173c7cf1c3"
+  integrity sha512-5I2Q1rQUCm/RvYIFl5uU3aBcya/dnYXrCIXKBDAonVcKQfRZ/O9ntE6GsNThvevCOnZM6HU5TFNBLnO5+hn+Uw==
+
 draftjs-filters@^2.5.0:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/draftjs-filters/-/draftjs-filters-2.5.0.tgz#07c156b040cc0dc94fd35069082206bc9f545de7"

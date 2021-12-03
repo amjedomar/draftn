@@ -18,6 +18,12 @@ import Editor from '@draft-js-plugins/editor';
 import createImagePlugin from '@draft-js-plugins/image';
 import createListPlugin from 'draft-js-list-plugin';
 import clsx from 'clsx';
+import {
+  onDraftEditorCopy,
+  onDraftEditorCut,
+  handleDraftEditorPastedText,
+  // @ts-ignore
+} from 'draftjs-conductor';
 import filterEditorState from '../utils/filterEditorState';
 import ImageEditable from './ImageEditable';
 import createLinkPlugin from '../plugins/linkPlugin';
@@ -212,6 +218,26 @@ class DraftnEditor extends Component<DraftnEditorProps> {
     return filterEditorState(editorState, restrictions);
   };
 
+  handlePastedText = (
+    text: string,
+    html: string,
+    editorState: EditorState,
+  ): DraftHandleValue => {
+    const { onChange } = this.props;
+
+    const newState = handleDraftEditorPastedText(
+      html,
+      editorState,
+    ) as EditorState;
+
+    if (newState) {
+      onChange(newState);
+      return 'handled';
+    }
+
+    return 'not-handled';
+  };
+
   render() {
     const { onUploadFile, lang, restrictions, className, style } = this
       .props as PropsWithDefaults;
@@ -258,6 +284,9 @@ class DraftnEditor extends Component<DraftnEditorProps> {
               handleKeyCommand={this.handleKeyCommand}
               keyBindingFn={this.handleKeyBinding}
               blockStyleFn={setBlockStyle}
+              onCopy={onDraftEditorCopy}
+              onCut={onDraftEditorCut}
+              handlePastedText={this.handlePastedText}
             />
           </div>
         </div>
