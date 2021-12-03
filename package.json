@@ -1,10 +1,16 @@
 {
   "name": "draftn",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "A neat text editor based on Draft.js",
   "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist/"
+  ],
+  "keywords": [
+    "draft-js",
+    "editor",
+    "react"
   ],
   "repository": "https://github.com/amjedomar/draftn",
   "author": "Amjed Omar <amjedomar201@gmail.com>",
