@@ -15,6 +15,190 @@ npm install draftn draft-js
 yarn add draftn draft-js
 ```
 
+## Example
+
+**JavaScript Example**
+```js
+import { Component } from "react";
+import { DraftnEditor } from "draftn";
+import { EditorState } from "draft-js";
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      editorState: EditorState.createEmpty(),
+    };
+  }
+
+  onChange = (editorState) => {
+    this.setState({ editorState });
+  };
+
+  handleFileUpload = (
+    fileType,
+    file,
+    success,
+    failure
+  ) => {
+    if (fileType === "image") {
+      /*
+        you can send the image to the server
+        then pass the image url you will receive
+        to "success" function like the following
+      */
+
+      // const formData = new FormData();
+      // formData.set("image", file);
+      // fetch("http://localhost:3030/upload", {
+      //   method: "POST",
+      //   body: formData,
+      // })
+      //   .then((res) => res.json())
+      //   .then(data => {
+      //     success(data.imageUrl);
+      //   })
+      //   .catch(failure);
+
+      /*
+        or you can convert it to base64 url
+        then pass it to "success" function
+        like the following
+      */
+
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+
+      reader.onloadend = () => {
+        const imageUrl = reader.result;
+        success(imageUrl);
+      };
+
+      reader.onerror = failure;
+    }
+  };
+
+  render() {
+    const { editorState } = this.state;
+
+    return (
+      <DraftnEditor
+        style={{
+          maxWidth: "600px",
+          height: "300px",
+        }}
+        editorState={editorState}
+        onChange={this.onChange}
+        onUploadFile={this.handleFileUpload}
+        lang="en"
+        restrictions={{
+          linkHref: "^https?:\\/\\/",
+          imageSrc: "^(https?:\\/\\/|data:)",
+          imageExtensions: ["png", "jpg", "jpeg"],
+        }}
+      />
+    );
+  }
+}
+
+export default App;
+```
+
+**TypeScript Example**
+```ts
+import { Component } from "react";
+import { DraftnEditor, DraftnUploadHandler } from "draftn";
+import { EditorState } from "draft-js";
+
+interface AppProps {}
+
+interface AppState {
+  editorState: EditorState;
+}
+
+class App extends Component<AppProps, AppState> {
+  constructor(props: AppProps) {
+    super(props);
+
+    this.state = {
+      editorState: EditorState.createEmpty(),
+    };
+  }
+
+  onChange = (editorState: EditorState) => {
+    this.setState({ editorState });
+  };
+
+  handleFileUpload: DraftnUploadHandler = (
+    fileType,
+    file,
+    success,
+    failure
+  ) => {
+    if (fileType === "image") {
+      /*
+        you can send the image to the server
+        then pass the image url you will receive
+        to "success" function like the following
+      */
+
+      // const formData = new FormData();
+      // formData.set("image", file);
+      // fetch("http://localhost:3030/upload", {
+      //   method: "POST",
+      //   body: formData,
+      // })
+      //   .then((res) => res.json())
+      //   .then(data => {
+      //     success(data.imageUrl);
+      //   })
+      //   .catch(failure);
+
+      /*
+        or you can convert it to base64 url
+        then pass it to "success" function
+        like the following
+      */
+
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+
+      reader.onloadend = () => {
+        const imageUrl = reader.result as string;
+        success(imageUrl);
+      };
+
+      reader.onerror = failure;
+    }
+  };
+
+  render() {
+    const { editorState } = this.state;
+
+    return (
+      <DraftnEditor
+        style={{
+          maxWidth: "600px",
+          height: "300px",
+        }}
+        editorState={editorState}
+        onChange={this.onChange}
+        onUploadFile={this.handleFileUpload}
+        lang="en"
+        restrictions={{
+          linkHref: "^https?:\\/\\/",
+          imageSrc: "^(https?:\\/\\/|data:)",
+          imageExtensions: ["png", "jpg", "jpeg"],
+        }}
+      />
+    );
+  }
+}
+
+export default App;
+```
+
 ## API
 ### `<DraftnEditor />` Props
 
@@ -36,8 +220,8 @@ using these CSS classes you can customize the draft content style
 | `.DraftnFormat_root` | The class of the root element that wraps the editor content
 | `.DraftnFormat_h2` | The class of `h2` elements
 | `.DraftnFormat_h3` | The class of `h3` elements
-| `.DraftnFormat_ol` | The class of `ol` elements
-| `.DraftnFormat_ul` | The class of `ul` elements
+| `.DraftnFormat_ol` | The class of `li` elements that are children of the `ol` element
+| `.DraftnFormat_ul` | The class of `li` elements that are children of the `ul` element
 | `.DraftnFormat_blockquote` | The class of `blockquote` elements
 | `.DraftnFormat_image` | The class of `img` elements
 | `.DraftnFormat_link` | The class of `a` elements
