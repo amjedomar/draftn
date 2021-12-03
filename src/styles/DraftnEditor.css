@@ -1,18 +1,20 @@
 .root {
   max-width: 600px;
   height: 300px;
+  display: flex;
+  flex-direction: column;
 }
 
 .body {
   border: 1px solid #ccc;
   cursor: text;
   padding: 10px;
-  height: calc(100% - 50px);
   box-sizing: border-box;
   overflow-y: auto;
   overflow-x: hidden;
   border-radius: 4px;
   direction: ltr;
+  flex-grow: 1;
 }
 
 .rtl {
