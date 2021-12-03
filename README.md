@@ -217,7 +217,9 @@ using these CSS classes you can customize the draft content style
 
 | Name | Description |
 | --- | --- |
-| `.DraftnFormat_root` | The class of the root element that wraps the editor content
+| `.DraftnFormat_root` | The class of the root element that wraps the editor 
+| `.DraftnFormat_rootLtr` | The class of the root element that wraps the editor content which its `lang` prop value is an LTR language
+| `.DraftnFormat_rootRtl` | The class of the root element that wraps the editor content which its `lang` prop value is an RTL language
 | `.DraftnFormat_h2` | The class of `h2` elements
 | `.DraftnFormat_h3` | The class of `h3` elements
 | `.DraftnFormat_ol` | The class of `li` elements that are children of the `ol` element

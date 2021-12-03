@@ -32,6 +32,7 @@ import styles from '../styles/DraftnEditor.css';
 import formatStyles from '../styles/Format.css';
 import 'draft-js/dist/Draft.css';
 import setBlockStyle from '../utils/setBlockStyle';
+import capitalize from '../utils/capitalize';
 
 const listPlugin = createListPlugin();
 const imagePlugin = createImagePlugin({ imageComponent: ImageEditable });
@@ -246,6 +247,9 @@ class DraftnEditor extends Component<DraftnEditorProps> {
 
     const langDir = lang === 'ar' ? 'rtl' : 'ltr';
 
+    const rootDirClassName =
+      `root${capitalize(langDir)}` as 'rootLtr' | 'rootRtl';
+
     if (restrictions?.imageExtensions?.length === 0) {
       throw new Error(
         'prop "restrictions.imageExtensions" cannot be an empty array ' +
@@ -271,7 +275,11 @@ class DraftnEditor extends Component<DraftnEditorProps> {
 
         <div
           ref={this.wrapperRef}
-          className={clsx(styles.body, formatStyles.root)}
+          className={clsx(
+            styles.body,
+            formatStyles.root,
+            formatStyles[rootDirClassName],
+          )}
           onClick={this.focus}
         >
           <div className={styles[langDir]}>
