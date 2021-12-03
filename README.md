@@ -27,3 +27,17 @@ Name | Type | Description
 `restrictions?` | `object` | An optional object that will restrict the editor with the following optional properties: <br /><br /> `linkHref?` &nbsp;(regex as `string`) <br />  The value of it will tell the editor to show an error to the user if he/she creates a link that its href doesn't match it. also, it will be used to remove any hrefs that doesn't much it in the initial editor state or when the user pasted a link(s). <br /><br /> `imageSrc?` &nbsp;(regex as `string`) <br /> The value of it will tell the editor to show an error to the user if the uploaded image's src doesn't match it. also, it will be used to remove any images that doesn't much it in the initial editor state or when the user pasted an image(s). <br /><br /> `imageExtensions?` &nbsp;(`string[]`) <br /> The value of it will tell the editor to filter the files that appeared in the upload window and it will show an error to the user if he/she uploaded a file with an extension that isn't included in the given extensions. however unlike `imageSrc`, this restriction will **not** apply in the initial state or when the user paste.
 `className?` | `string` | A name of a CSS class that may change the editor's `width`/`height` or any other style stuff
 `style?` | `CSSProperties` | A style object that may change the editor's `width`/`height` or any other style stuff
+
+## CSS Classes
+using these CSS classes you can customize the draft content style
+
+| Name | Description |
+| --- | --- |
+| `.DraftnFormat_root` | The class of the root element that wraps the editor content
+| `.DraftnFormat_h2` | The class of `h2` elements
+| `.DraftnFormat_h3` | The class of `h3` elements
+| `.DraftnFormat_ol` | The class of `ol` elements
+| `.DraftnFormat_ul` | The class of `ul` elements
+| `.DraftnFormat_blockquote` | The class of `blockquote` elements
+| `.DraftnFormat_image` | The class of `img` elements
+| `.DraftnFormat_link` | The class of `a` elements
