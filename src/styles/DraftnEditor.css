@@ -1,8 +1,6 @@
 .root {
   max-width: 600px;
   height: 300px;
-  display: flex;
-  flex-direction: column;
 }
 
 .body {
@@ -14,7 +12,7 @@
   overflow-x: hidden;
   border-radius: 4px;
   direction: ltr;
-  flex-grow: 1;
+  height: calc(100% - 75px);
 }
 
 .rtl {

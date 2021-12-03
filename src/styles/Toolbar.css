@@ -1,6 +1,8 @@
 .root {
   display: flex;
   overflow-x: auto;
+  height: 75px;
+  align-items: center;
 }
 
 .root.rtl > *:first-child {
