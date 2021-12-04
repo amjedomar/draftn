@@ -12,7 +12,6 @@ import {
   EditorState,
   KeyBindingUtil,
   RichUtils,
-  getDefaultKeyBinding,
 } from 'draft-js';
 import Editor from '@draft-js-plugins/editor';
 import createImagePlugin from '@draft-js-plugins/image';
@@ -34,7 +33,7 @@ import 'draft-js/dist/Draft.css';
 import setBlockStyle from '../utils/setBlockStyle';
 import capitalize from '../utils/capitalize';
 
-const listPlugin = createListPlugin();
+const listPlugin = createListPlugin({ allowNestedLists: true, maxDepth: 1 });
 const imagePlugin = createImagePlugin({ imageComponent: ImageEditable });
 const linkPlugin = createLinkPlugin();
 
@@ -160,7 +159,9 @@ class DraftnEditor extends Component<DraftnEditorProps> {
     return 'not-handled';
   };
 
-  handleKeyBinding = (e: KeyboardEvent): DraftEditorCommand | string | null => {
+  handleKeyBinding = (
+    e: KeyboardEvent,
+  ): DraftEditorCommand | string | null | undefined => {
     const { editorState } = this.props;
 
     if (e.code === 'Enter') {
@@ -200,7 +201,7 @@ class DraftnEditor extends Component<DraftnEditorProps> {
       }
     }
 
-    return getDefaultKeyBinding(e);
+    return undefined;
   };
 
   setRefs: ToolbarRefSetter = (refKey, refVal) => {

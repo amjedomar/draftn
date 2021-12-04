@@ -38,6 +38,7 @@ const filterEditorState = (
           }),
         },
       ],
+      maxNesting: 1,
       whitespacedCharacters: ['\t', '📷'],
     },
     editorState,
