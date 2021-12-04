@@ -18,14 +18,23 @@ interface ToolbarFileInputProps extends HTMLProps<HTMLInputElement> {
   id: string;
   lang: DraftnLang;
   onPick: PickHandler;
+  title?: string;
   extensions?: string[];
   children: ReactNode;
 }
 
 const ToolbarFileInput = forwardRef(
   (props: ToolbarFileInputProps, ref: Ref<HTMLInputElement>) => {
-    const { className, id, onPick, children, lang, extensions, ...inputProps } =
-      props;
+    const {
+      className,
+      id,
+      onPick,
+      children,
+      lang,
+      extensions,
+      title,
+      ...inputProps
+    } = props;
 
     const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
       if (!e.target.files) return;
@@ -48,6 +57,7 @@ const ToolbarFileInput = forwardRef(
         <label
           htmlFor={id}
           className={clsx(toolbarButtonStyles.root, className)}
+          title={title}
         >
           {children}
         </label>
