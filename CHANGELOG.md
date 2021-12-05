@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.0.10
+**Breaking Changes**
+- rename format class `.DraftnFormat_ol` to `.DraftnFormat_olItem`
+- rename format class `.DraftnFormat_ul` to `.DraftnFormat_ulItem`
+
+**Fixes**
+- support nested lists
+- set image max width to 100%
+- add title to the image toggle button
+
 ## v1.0.9
 - correct the height of the editor
 
