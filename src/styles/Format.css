@@ -15,11 +15,11 @@
   class is exists when access this css file as module
   and to avoid IDE warnings
 */
-.ol {
+.olItem {
   font-size: inherit;
 }
 
-.ul {
+.ulItem {
   font-size: inherit;
 }
 

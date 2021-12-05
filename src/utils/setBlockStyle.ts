@@ -5,8 +5,8 @@ const setBlockStyle = (block: ContentBlock): string => {
   const type = block.getType();
   if (type === 'header-two') return styles.h2;
   if (type === 'header-three') return styles.h3;
-  if (type === 'ordered-list-item') return styles.ol;
-  if (type === 'unordered-list-item') return styles.ul;
+  if (type === 'ordered-list-item') return styles.olItem;
+  if (type === 'unordered-list-item') return styles.ulItem;
   if (type === 'blockquote') return styles.blockquote;
 
   return '';

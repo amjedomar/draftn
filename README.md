@@ -222,8 +222,8 @@ using these CSS classes you can customize the draft content style
 | `.DraftnFormat_rootRtl` | The class of the root element that wraps the editor content which its `lang` prop value is an RTL language
 | `.DraftnFormat_h2` | The class of `h2` elements
 | `.DraftnFormat_h3` | The class of `h3` elements
-| `.DraftnFormat_ol` | The class of `li` elements that are children of the `ol` element
-| `.DraftnFormat_ul` | The class of `li` elements that are children of the `ul` element
+| `.DraftnFormat_olItem` | The class of `li` elements that are children of the `ol` element
+| `.DraftnFormat_ulItem` | The class of `li` elements that are children of the `ul` element
 | `.DraftnFormat_blockquote` | The class of `blockquote` elements
 | `.DraftnFormat_image` | The class of `img` elements
 | `.DraftnFormat_link` | The class of `a` elements
