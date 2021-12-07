@@ -217,13 +217,14 @@ using these CSS classes you can customize the draft content style
 
 | Name | Description |
 | --- | --- |
-| `.DraftnFormat_root` | The class of the root element that wraps the editor 
-| `.DraftnFormat_rootLtr` | The class of the root element that wraps the editor content which its `lang` prop value is an LTR language
-| `.DraftnFormat_rootRtl` | The class of the root element that wraps the editor content which its `lang` prop value is an RTL language
+| `.DraftnFormat_root` | The class of the root element that wraps the draft content 
+| `.DraftnFormat_root[langdir="ltr"]` | The class of the root element that wraps the draft content which its `lang` prop value is an LTR language
+| `.DraftnFormat_root[langdir="rtl"]` | The class of the root element that wraps the draft content which its `lang` prop value is an RTL language
+| `.DraftnFormat_root[iseditable="true"]` | The class of the root element that wraps the draft content which its component is `DraftnEditor`
+| `.DraftnFormat_root[iseditable="false"]` | The class of the root element that wraps the draft content which its component is `DraftnView`
 | `.DraftnFormat_h2` | The class of `h2` elements
 | `.DraftnFormat_h3` | The class of `h3` elements
-| `.DraftnFormat_olItem` | The class of `li` elements that are children of the `ol` element
-| `.DraftnFormat_ulItem` | The class of `li` elements that are children of the `ul` element
+| `.DraftnFormat_li` | The class of `li` elements
 | `.DraftnFormat_blockquote` | The class of `blockquote` elements
 | `.DraftnFormat_image` | The class of `img` elements
 | `.DraftnFormat_link` | The class of `a` elements

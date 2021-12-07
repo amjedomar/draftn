@@ -4,10 +4,16 @@
 
 .h2 {
   font-size: 24px;
+  margin-bottom: 0.75rem;
 }
 
 .h3 {
   font-size: 20px;
+  margin-bottom: 0.75rem;
+}
+
+.p {
+  margin-bottom: 0.5rem;
 }
 
 /*
@@ -15,11 +21,7 @@
   class is exists when access this css file as module
   and to avoid IDE warnings
 */
-.olItem {
-  font-size: inherit;
-}
-
-.ulItem {
+.li {
   font-size: inherit;
 }
 
@@ -28,11 +30,11 @@
   padding: 0 1rem;
 }
 
-.rootLtr .blockquote {
+.root[data-langdir="ltr"] .blockquote {
   border-left: 0.25rem solid #4caf50;
 }
 
-.rootRtl .blockquote {
+.root[data-langdir="rtl"] .blockquote {
   border-right: 0.25rem solid #4caf50;
 }
 

@@ -27,6 +27,8 @@
     "@draft-js-plugins/editor": "^4.1.0",
     "@draft-js-plugins/image": "^4.1.2",
     "clsx": "^1.1.1",
+    "dompurify": "^2.3.3",
+    "draft-convert": "^2.1.12",
     "draft-js-list-plugin": "^1.0.2",
     "draftjs-conductor": "^2.2.0",
     "draftjs-filters": "^2.5.0",
@@ -38,6 +40,8 @@
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.3.0",
+    "@types/dompurify": "^2.3.1",
+    "@types/draft-convert": "^2.1.4",
     "@types/draft-js": "^0.11.6",
     "@types/node": "^16.11.10",
     "@types/react": "^17.0.37",

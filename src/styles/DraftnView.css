@@ -1,0 +1,11 @@
+.root[data-langdir="rtl"] .list {
+  margin-right: 30px;
+}
+
+.root[data-langdir="ltr"] .list {
+  margin-left: 30px;
+}
+
+.listLevel0 {
+  margin-bottom: 1rem;
+}

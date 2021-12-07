@@ -1,5 +1,3 @@
-/* eslint-disable import/prefer-default-export */
-
 export {
   default as DraftnEditor,
   DraftnEditorProps,
@@ -8,3 +6,7 @@ export {
   DraftnChangeHandler,
   DraftnUploadHandler,
 } from './components/DraftnEditor';
+
+export {
+  default as DraftnView
+} from './components/DraftnView';
