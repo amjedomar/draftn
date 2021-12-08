@@ -5,8 +5,22 @@ import DOMPurify from 'dompurify';
 import clsx from 'clsx';
 import formatStyles from '../styles/Format.css';
 import styles from '../styles/DraftnView.css';
-import LiteDOM from '../utils/LiteDOM';
 import { DraftnLang } from '..';
+
+const OL = (depth: number) => {
+  const type = depth % 2 ? 'a' : '1';
+
+  return (
+    <ol
+      className={clsx(styles.list, depth === 0 && styles.listLevel0)}
+      type={type}
+    />
+  );
+};
+
+const UL = (depth: number) => (
+  <ul className={clsx(styles.list, depth === 0 && styles.listLevel0)} />
+);
 
 const covertConfig: IConvertToHTMLConfig = {
   styleToHTML: (style) => {
@@ -43,7 +57,21 @@ const covertConfig: IConvertToHTMLConfig = {
     if (block.type === 'blockquote') {
       return <blockquote className={formatStyles.blockquote} />;
     }
-    
+
+    if (block.type === 'ordered-list-item') {
+      return {
+        element: <li className={formatStyles.li} />,
+        nest: OL,
+      };
+    }
+
+    if (block.type === 'unordered-list-item') {
+      return {
+        element: <li className={formatStyles.li} />,
+        nest: UL,
+      };
+    }
+
     return undefined;
   },
   entityToHTML: (entity, originalText) => {
@@ -72,17 +100,13 @@ interface DraftnViewProps {
   style?: CSSProperties;
 }
 
-const DraftnView = ({ contentState, lang, className, style }: DraftnViewProps) => {
-  let html = convertToHTML(covertConfig)(contentState);
-
-  const liteDOM = new LiteDOM(html);
-  liteDOM.selectByTagName('ol').appendAttr('class', styles.list);
-  liteDOM.selectByTagName('ul').appendAttr('class', styles.list);
-  liteDOM.selectByTagName('ol', 0).appendAttr('class', styles.listLevel0);
-  liteDOM.selectByTagName('ul', 0).appendAttr('class', styles.listLevel0);
-  liteDOM.selectByTagName('li').appendAttr('class', formatStyles.li);
-
-  html = liteDOM.getHTML();
+const DraftnView = ({
+  contentState,
+  lang,
+  className,
+  style,
+}: DraftnViewProps) => {
+  const html = convertToHTML(covertConfig)(contentState);
 
   const langDir = lang === 'ar' ? 'rtl' : 'ltr';
 

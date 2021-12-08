@@ -27,7 +27,7 @@
     "@draft-js-plugins/editor": "^4.1.0",
     "@draft-js-plugins/image": "^4.1.2",
     "clsx": "^1.1.1",
-    "dompurify": "^2.3.3",
+    "dompurify": "^2.3.4",
     "draft-convert": "^2.1.12",
     "draft-js-list-plugin": "^1.0.2",
     "draftjs-conductor": "^2.2.0",
