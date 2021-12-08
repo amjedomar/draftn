@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.1.1
+- fix: remove extra margins and paddings in draft content
+
 ## v1.1.0
 **Breaking Changes**
 - rename format class `.DraftnFormat_rootLtr` to `.DraftnFormat_root[langdir="ltr"]`
