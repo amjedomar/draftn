@@ -93,7 +93,7 @@ const covertConfig: IConvertToHTMLConfig = {
   },
 };
 
-interface DraftnViewProps {
+export interface DraftnViewProps {
   contentState: ContentState;
   lang: DraftnLang;
   className?: string;

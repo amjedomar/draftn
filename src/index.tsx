@@ -8,5 +8,10 @@ export {
 } from './components/DraftnEditor';
 
 export {
-  default as DraftnView
+  default as DraftnView,
+  DraftnViewProps
 } from './components/DraftnView';
+
+export {
+  default as DraftnViewOnce
+} from './components/DraftnViewOnce';
