@@ -1,3 +1,11 @@
+.root[data-langdir="ltr"] {
+  direction: ltr;
+}
+
+.root[data-langdir="rtl"] {
+  direction: rtl;
+}
+
 .root[data-langdir="rtl"] .list {
   margin-right: 30px;
 }

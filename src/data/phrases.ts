@@ -15,6 +15,10 @@ const phrases = {
     ar: 'الصورة التي رفعتها غير صالحة',
     en: 'The uploaded image is invalid',
   },
+  unsupportedBrowser: {
+    ar: 'متصفحك غير مدعوم ، يرجى استخدام أحدث إصدار من Chrome أو Firefox أو Microsoft Edge أو Safari أو Opera',
+    en: 'Your browser isn\'t supported please use the latest version of Chrome, Firefox, Microsoft Edge, Safari or Opera.'
+  }
 };
 
 export default phrases;

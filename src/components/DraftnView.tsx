@@ -6,6 +6,7 @@ import clsx from 'clsx';
 import formatStyles from '../styles/Format.css';
 import styles from '../styles/DraftnView.css';
 import { DraftnLang } from '..';
+import phrases from '../data/phrases';
 
 const OL = (depth: number) => {
   const type = depth % 2 ? 'a' : '1';
@@ -106,7 +107,9 @@ const DraftnView = ({
   className,
   style,
 }: DraftnViewProps) => {
-  const html = convertToHTML(covertConfig)(contentState);
+  const html = DOMPurify.isSupported
+    ? convertToHTML(covertConfig)(contentState)
+    : `<p style="color: red">${phrases.unsupportedBrowser[lang]}</p>`;
 
   const langDir = lang === 'ar' ? 'rtl' : 'ltr';
 
