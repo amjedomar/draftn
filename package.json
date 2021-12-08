@@ -1,7 +1,7 @@
 {
   "name": "draftn",
-  "version": "1.0.10",
-  "description": "A neat text editor based on Draft.js",
+  "version": "1.1.0",
+  "description": "A text editor that comes with a compatible view component based on Draft.js",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [

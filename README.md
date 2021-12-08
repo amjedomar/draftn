@@ -1,6 +1,6 @@
 # Draftn
 
-A text editor based on Draft.js
+A text editor that comes with a compatible view component based on Draft.js
 
 ## Installation
 first, navigate to a react.js project (if you don't have one you can create one using [`create-react-app`](https://create-react-app.dev)) then run
@@ -290,7 +290,7 @@ Name | Type | Description
 `style?` | `CSSProperties` | A style object that may change the darft's `width`/`height` or any other style stuff
 
 ### `<DraftnViewOnce />`
-has the same props and functionality of `DraftnView` except it will render once only (which is good for performance)
+this component has the same props and functionality of `DraftnView` except it will render once only (which is good for performance)
 
 ## CSS Classes
 using these CSS classes you can customize the draft content style

@@ -1,5 +1,16 @@
 # Changelog
 
+## v1.1.0
+**Breaking Changes**
+- rename format class `.DraftnFormat_rootLtr` to `.DraftnFormat_root[langdir="ltr"]`
+- rename format class `.DraftnFormat_rootRtl` to `.DraftnFormat_root[langdir="rtl"]`
+- replace the two format classes `.DraftnFormat_olItem` and `.DraftnFormat_ulItem` with `.DraftnFormat_li`
+
+
+**Features**
+- add `DraftnView` and `DraftViewOnce` components
+- add two format classes `.DraftnFormat_root[iseditable="true"]` and `.DraftnFormat_root[iseditable="false"]`
+
 ## v1.0.10
 **Breaking Changes**
 - rename format class `.DraftnFormat_ol` to `.DraftnFormat_olItem`
