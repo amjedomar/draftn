@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.1.2
+**Breaking Changes**
+- the `draft.js` css import is removed form `DraftnEditor` so you should import it manually
+
+**Fixes**
+- makes `DraftnEditor` works in ssr
+- makes html sanitization works in ssr
+
 ## v1.1.1
 - fix: remove extra margins and paddings in draft content
 
