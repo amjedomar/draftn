@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.1.3
+- fix: remove some draftn css
+
 ## v1.1.2
 **Breaking Changes**
 - the `draft.js` css import is removed form `DraftnEditor` so you should import it manually

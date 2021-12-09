@@ -30,15 +30,15 @@ import Toolbar, { ToolbarRefSetter } from './Toolbar';
 import styles from '../styles/DraftnEditor.css';
 import formatStyles from '../styles/Format.css';
 import setBlockStyle from '../utils/setBlockStyle';
-import injectCss from '../utils/injectCss';
+// import injectCss from '../utils/injectCss';
 
-injectCss(`
-  .public-DraftStyleDefault-ol,
-  .public-DraftStyleDefault-ul {
-    margin-top: 0;
-    margin-bottom: 1rem;
-  }
-`);
+// injectCss(`
+//   .public-DraftStyleDefault-ol,
+//   .public-DraftStyleDefault-ul {
+//     margin-top: 0;
+//     margin-bottom: 1rem;
+//   }
+// `);
 
 const listPlugin = createListPlugin({ allowNestedLists: true, maxDepth: 1 });
 const imagePlugin = createImagePlugin({ imageComponent: ImageEditable });
