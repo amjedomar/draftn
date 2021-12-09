@@ -29,7 +29,6 @@ import createLinkPlugin from '../plugins/linkPlugin';
 import Toolbar, { ToolbarRefSetter } from './Toolbar';
 import styles from '../styles/DraftnEditor.css';
 import formatStyles from '../styles/Format.css';
-import 'draft-js/dist/Draft.css';
 import setBlockStyle from '../utils/setBlockStyle';
 import injectCss from '../utils/injectCss';
 
@@ -68,6 +67,7 @@ export interface DraftnEditorProps {
   onUploadFile: DraftnUploadHandler;
   lang?: DraftnLang;
   restrictions?: DraftnRestrictions;
+  editorKey?: string;
   className?: string;
   style?: CSSProperties;
 }
@@ -249,8 +249,8 @@ class DraftnEditor extends Component<DraftnEditorProps> {
   };
 
   render() {
-    const { onUploadFile, lang, restrictions, className, style } = this
-      .props as PropsWithDefaults;
+    const { onUploadFile, lang, restrictions, editorKey, className, style } =
+      this.props as PropsWithDefaults;
 
     const editorState = this.getEditorState();
 
@@ -299,6 +299,7 @@ class DraftnEditor extends Component<DraftnEditorProps> {
               onCopy={onDraftEditorCopy}
               onCut={onDraftEditorCut}
               handlePastedText={this.handlePastedText}
+              editorKey={editorKey}
             />
           </div>
         </div>
