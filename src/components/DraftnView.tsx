@@ -1,7 +1,7 @@
 import { CSSProperties } from 'react';
 import { ContentState } from 'draft-js';
 import { convertToHTML, IConvertToHTMLConfig } from 'draft-convert';
-import DOMPurify from 'dompurify';
+import DOMPurify from 'isomorphic-dompurify';
 import clsx from 'clsx';
 import formatStyles from '../styles/Format.css';
 import styles from '../styles/DraftnView.css';
