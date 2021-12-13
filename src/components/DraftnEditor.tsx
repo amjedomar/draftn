@@ -265,7 +265,7 @@ class DraftnEditor extends Component<DraftnEditorProps> {
 
     return (
       <div
-        className={clsx(styles.root, styles[langDir], className)}
+        className={clsx('DraftnComponent', styles.root, styles[langDir], className)}
         style={style}
       >
         <Toolbar

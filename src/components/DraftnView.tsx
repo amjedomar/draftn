@@ -115,7 +115,7 @@ const DraftnView = ({
 
   return (
     <div
-      className={clsx(styles.root, formatStyles.root, className)}
+      className={clsx('DraftnComponent', styles.root, formatStyles.root, className)}
       style={style}
       data-langdir={langDir}
       data-iseditable="false"
