@@ -3,6 +3,15 @@ import styles from '../styles/Format.css';
 
 const setBlockStyle = (block: ContentBlock): string => {
   const type = block.getType();
+  const text = block.getText();
+
+  if (
+    ['unstyled', 'paragraph', 'header-two', 'header-three'].includes(type) &&
+    text.trim() === ''
+  ) {
+    return '';
+  }
+
   if (type === 'header-two') return styles.h2;
   if (type === 'header-three') return styles.h3;
   if (type === 'ordered-list-item') return styles.li;
