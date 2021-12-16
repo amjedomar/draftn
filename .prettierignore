@@ -5,5 +5,5 @@
 # Production
 /dist
 
-# public
-/public
+# Others
+/src/styles/index.css
