@@ -152,6 +152,7 @@ class Toolbar extends Component<ToolbarProps, ToolbarState> {
     const { isUploading } = this.state;
     const currentInlineStyles = editorState.getCurrentInlineStyle();
     const currentBlockType = RichUtils.getCurrentBlockType(editorState);
+    const isClientSide = typeof window !== 'undefined';
 
     const langDir = lang === 'ar' ? 'rtl' : 'ltr';
 
@@ -164,7 +165,7 @@ class Toolbar extends Component<ToolbarProps, ToolbarState> {
             <ToolbarButton
               key={type}
               title={title}
-              checked={currentInlineStyles.has(type)}
+              checked={isClientSide && currentInlineStyles.has(type)}
               data-style={type}
               onMouseDown={this.toggleInlineStyle}
             >
@@ -176,7 +177,7 @@ class Toolbar extends Component<ToolbarProps, ToolbarState> {
             <ToolbarButton
               key={type}
               title={title}
-              checked={currentBlockType === type}
+              checked={isClientSide && currentBlockType === type}
               data-block={type}
               onMouseDown={this.toggleBlockType}
             >
