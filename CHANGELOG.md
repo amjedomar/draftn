@@ -1,5 +1,19 @@
 # Changelog
 
+## v1.2.0
+**Breaking Changes**
+- move Draftn css and Draft.js css to a css file located in `draftn/dist/index.css`
+
+**Features**
+- provides a javascript css file located in `draftn/dist/index.css-text.js` that can be used for css server side-rendering
+
+**Fixes**
+- increment default spaces between some elements
+- prevent toolbar button to be checked in SSR
+
+**Docs**
+- add server-side rendering instructions
+
 ## v1.1.3
 - fix: remove some draftn css
 
