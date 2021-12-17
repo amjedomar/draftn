@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.2.1
+**Fixes**
+- move svg icons css to inline styles
+
 ## v1.2.0
 **Breaking Changes**
 - move Draftn css and Draft.js css to a css file located in `draftn/dist/index.css`
