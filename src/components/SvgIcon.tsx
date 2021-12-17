@@ -1,19 +1,24 @@
 import { ReactNode, SVGProps } from 'react';
-import clsx from 'clsx';
-import styles from '../styles/SvgIcon.css';
 
 interface SvgIconProps extends SVGProps<SVGSVGElement> {
   viewBox: string;
   children: ReactNode;
 }
 
-const SvgIcon = ({
-  className,
-  viewBox,
-  children,
-  ...svgProps
-}: SvgIconProps) => (
-  <svg className={clsx(styles.root, className)} viewBox={viewBox} {...svgProps}>
+const SvgIcon = ({ style, viewBox, children, ...svgProps }: SvgIconProps) => (
+  <svg
+    style={{
+      display: 'inline-block',
+      width: '1em',
+      height: '1em',
+      fontSize: '24px',
+      fill: 'currentColor',
+      userSelect: 'none',
+      ...style,
+    }}
+    viewBox={viewBox}
+    {...svgProps}
+  >
     {children}
   </svg>
 );
