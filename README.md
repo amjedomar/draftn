@@ -1,28 +1,51 @@
 # Draftn
 
-A text editor that comes with a compatible view component based on Draft.js
+A text editor that comes with a compatible view component based on Draft.js that works in both client-side and server-side (see the [Server Side Rendering Instructions](#server-side-rendering-instructions) below).
 
 ## Installation
-first, navigate to a react.js project (if you don't have one you can create one using [`create-react-app`](https://create-react-app.dev)) then run
+
+first, navigate to a react.js project (if you don't have one already, you can create one using [`create-react-app`](https://create-react-app.dev)) then run
 
 **using npm**
+
 ```
 npm install draftn draft-js@0.11.7
 ```
 
 **or using yarn**
+
 ```
 yarn add draftn draft-js@0.11.7
 ```
 
-## Example
+## Examples
+
 **`DraftnEditor` example**
 
 ```ts
-import { Component } from "react";
-import 'draft-js/dist/Draft.css';
-import { DraftnEditor, DraftnUploadHandler } from "draftn";
-import { EditorState } from "draft-js";
+import { Component } from 'react';
+import { DraftnEditor, DraftnUploadHandler } from 'draftn';
+import { EditorState, convertFromRaw } from 'draft-js';
+/*
+ you must not import the 'draft-js/dist/Draft.css' file
+ because its code included in the 'draftn/dist/index.css' file
+*/
+import 'draftn/dist/index.css';
+
+const emptyContentState = convertFromRaw({
+  blocks: [
+    {
+      key: 'foo',
+      text: '',
+      type: 'unstyled',
+      depth: 0,
+      inlineStyleRanges: [],
+      entityRanges: [],
+      data: {},
+    },
+  ],
+  entityMap: {},
+});
 
 interface AppProps {}
 
@@ -35,7 +58,7 @@ class App extends Component<AppProps, AppState> {
     super(props);
 
     this.state = {
-      editorState: EditorState.createEmpty(),
+      editorState: EditorState.createWithContent(emptyContentState),
     };
   }
 
@@ -47,9 +70,9 @@ class App extends Component<AppProps, AppState> {
     fileType,
     file,
     success,
-    failure
+    failure,
   ) => {
-    if (fileType === "image") {
+    if (fileType === 'image') {
       /*
         you can send the image to the server
         then pass the image url you will receive
@@ -91,18 +114,19 @@ class App extends Component<AppProps, AppState> {
 
     return (
       <DraftnEditor
+        editorKey="foo"
         style={{
-          maxWidth: "600px",
-          height: "300px",
+          maxWidth: '600px',
+          height: '300px',
         }}
         editorState={editorState}
         onChange={this.onChange}
         onUploadFile={this.handleFileUpload}
         lang="en"
         restrictions={{
-          linkHref: "^https?:\\/\\/",
-          imageSrc: "^(https?:\\/\\/|data:)",
-          imageExtensions: ["png", "jpg", "jpeg"],
+          linkHref: '^https?:\\/\\/',
+          imageSrc: '^(https?:\\/\\/|data:)',
+          imageExtensions: ['png', 'jpg', 'jpeg'],
         }}
       />
     );
@@ -115,128 +139,39 @@ export default App;
 **`DraftnView` example**
 
 ```ts
-import { Component } from "react";
-import { DraftnView } from "draftn";
-import { EditorState, RawDraftContentState, convertFromRaw } from "draft-js";
+import { Component } from 'react';
+import { DraftnView } from 'draftn';
+import { EditorState, RawDraftContentState, convertFromRaw } from 'draft-js';
+/*
+ you must not import the 'draft-js/dist/Draft.css' file
+ because its code included in the 'draftn/dist/index.css' file
+*/
+import 'draftn/dist/index.css';
 
 const rawContentState: RawDraftContentState = {
   blocks: [
     {
-      key: "eo846",
-      text: "Draft.js is a JavaScript rich text editor framework, built for React and backed by an immutable model.",
-      type: "unstyled",
+      key: 'foo',
+      text: 'Draft.js is a JavaScript rich text editor framework',
+      type: 'unstyled',
       depth: 0,
       inlineStyleRanges: [
         {
           offset: 0,
           length: 8,
-          style: "BOLD",
+          style: 'BOLD',
         },
         {
           offset: 14,
           length: 10,
-          style: "ITALIC",
+          style: 'ITALIC',
         },
       ],
       entityRanges: [],
-      data: {},
-    },
-    {
-      key: "fhuso",
-      text: "Extensible and Customizable: We provide the building blocks to enable the creation of a broad variety of rich text composition experiences, from basic text styles to embedded media.",
-      type: "unordered-list-item",
-      depth: 0,
-      inlineStyleRanges: [
-        {
-          offset: 0,
-          length: 28,
-          style: "BOLD",
-        },
-      ],
-      entityRanges: [],
-      data: {},
-    },
-    {
-      key: "bj5m",
-      text: "Declarative Rich Text: Draft.js fits seamlessly into React applications, abstracting away the details of rendering, selection, and input behavior with a familiar declarative API.",
-      type: "unordered-list-item",
-      depth: 0,
-      inlineStyleRanges: [
-        {
-          offset: 0,
-          length: 22,
-          style: "BOLD",
-        },
-      ],
-      entityRanges: [
-        {
-          offset: 53,
-          length: 5,
-          key: 0,
-        },
-      ],
-      data: {},
-    },
-    {
-      key: "abf72",
-      text: "Immutable Editor State: The Draft.js model is built with immutable-js, offering an API with functional state updates and aggressively leveraging data persistence for scalable memory usage.",
-      type: "unordered-list-item",
-      depth: 0,
-      inlineStyleRanges: [
-        {
-          offset: 0,
-          length: 23,
-          style: "BOLD",
-        },
-      ],
-      entityRanges: [
-        {
-          offset: 57,
-          length: 12,
-          key: 1,
-        },
-      ],
-      data: {},
-    },
-    {
-      key: "chkl4",
-      text: "Learn how to use Draft.js in your own project.",
-      type: "unstyled",
-      depth: 0,
-      inlineStyleRanges: [],
-      entityRanges: [
-        {
-          offset: 0,
-          length: 46,
-          key: 2,
-        },
-      ],
       data: {},
     },
   ],
-  entityMap: {
-    "0": {
-      type: "LINK",
-      mutability: "MUTABLE",
-      data: {
-        url: "http://facebook.github.io/react/",
-      },
-    },
-    "1": {
-      type: "LINK",
-      mutability: "MUTABLE",
-      data: {
-        url: "https://facebook.github.io/immutable-js/",
-      },
-    },
-    "2": {
-      type: "LINK",
-      mutability: "MUTABLE",
-      data: {
-        url: "https://draftjs.org/docs/getting-started/",
-      },
-    },
-  },
+  entityMap: {},
 };
 
 const contentState = convertFromRaw(rawContentState);
@@ -268,7 +203,108 @@ class App extends Component<AppProps, AppState> {
 export default App;
 ```
 
-## API
+## Server-Side Rendering Instructions
+
+to make the Draftn components render correctly in both server-side and client-side follow these instructions
+
+- replace the Draftn css file import with `DRAFTN_CSS` constant import from the Draftn javascript css text file then pass the constant to a CSS-in-JS library that supports css rendering for both client-side and server-side like [`styled-jsx`](https://github.com/vercel/styled-jsx), [`emotion-js`](https://github.com/emotion-js/emotion), [`styled-components`](https://github.com/styled-components/styled-components), or others. like the following:
+
+```ts
+import { Component } from 'react';
+import { DraftnEditor, DraftnView } from 'draftn';
+/*
+ * import the `DRAFTN_CSS` constant from the Draftn javascript css text file
+ */
+import DRAFTN_CSS from 'draftn/dist/index.css-text';
+
+class App extends Component {
+  render() {
+    return (
+      <>
+        {/* pass the `DRAFTN_CSS` constant to `styled-jsx` */}
+        <style jsx>{DRAFTN_CSS}</style>
+
+        <DraftnEditor {...draftnEditorProps} />
+
+        {/* for good performance use 'DraftnViewOnce' rather than 'DraftnView' if the component will renders once only */}
+        <DraftnView {...draftnViewProps} />
+      </>
+    );
+  }
+}
+
+export default App;
+```
+
+- set the `editorKey` prop of the `DraftnEditor` component explicitly. like the following:
+
+```ts
+import { Component } from 'react';
+import { DraftnEditor } from 'draftn';
+
+class App extends Component {
+  render() {
+    return <DraftnEditor editorKey="foo" {...restDraftnEditorProps} />;
+  }
+}
+
+export default App;
+```
+
+- don't use the `EditorState.createEmpty()` to generate the initial `editorState` of the `DraftnEditor` component instead use the `EditorState.createWithContent()`. like the following:
+
+```ts
+import { Component } from 'react';
+import { DraftnEditor } from 'draftn';
+import { EditorState, convertFromRaw } from 'draft-js';
+
+const emptyContentState = convertFromRaw({
+  blocks: [
+    {
+      key: 'foo',
+      text: '',
+      type: 'unstyled',
+      depth: 0,
+      inlineStyleRanges: [],
+      entityRanges: [],
+      data: {},
+    },
+  ],
+  entityMap: {},
+});
+
+interface AppProps {}
+
+interface AppState {
+  editorState: EditorState;
+}
+
+class App extends Component<AppProps, AppState> {
+  constructor(props: AppProps) {
+    super(props);
+
+    this.state = {
+      /**
+       * use the `EditorState.createWithContent()` instead of the `EditorState.createEmpty()`
+       * like the following
+       */
+      editorState: EditorState.createWithContent(emptyContentState),
+    };
+  }
+
+  render() {
+    const { editorState } = this.state;
+
+    return (
+      <DraftnEditor editorState={editorState} {...restDraftnEditorProps} />
+    );
+  }
+}
+
+export default App;
+```
+
+## Components API
 ### `<DraftnEditor />` Props
 
 Name | Type | Description
