@@ -195,7 +195,10 @@ class App extends Component<AppProps, AppState> {
     const { editorState } = this.state;
     const contentState = editorState.getCurrentContent();
 
-    // for good performance use 'DraftnViewOnce' rather than 'DraftnView' if the component will renders once only
+    /*
+     * for good performance use 'DraftnViewOnce' rather than 'DraftnView'
+     * if the component will renders once only
+     */
     return <DraftnView lang="en" contentState={contentState} />;
   }
 }
@@ -226,7 +229,10 @@ class App extends Component {
 
         <DraftnEditor {...draftnEditorProps} />
 
-        {/* for good performance use 'DraftnViewOnce' rather than 'DraftnView' if the component will renders once only */}
+        {/*
+         * for good performance use 'DraftnViewOnce' rather than 'DraftnView'
+         * if the component will renders once only
+         */}
         <DraftnView {...draftnViewProps} />
       </>
     );
