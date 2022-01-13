@@ -84,7 +84,12 @@ const covertConfig: IConvertToHTMLConfig = {
 
     if (entity.type === 'LINK') {
       return (
-        <a className={formatStyles.link} href={entity.data.url}>
+        <a
+          className={formatStyles.link}
+          href={entity.data.url}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           {originalText}
         </a>
       );
@@ -115,7 +120,12 @@ const DraftnView = ({
 
   return (
     <div
-      className={clsx('DraftnComponent', styles.root, formatStyles.root, className)}
+      className={clsx(
+        'DraftnComponent',
+        styles.root,
+        formatStyles.root,
+        className,
+      )}
       style={style}
       data-langdir={langDir}
       data-iseditable="false"

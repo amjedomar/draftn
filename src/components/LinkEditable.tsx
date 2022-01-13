@@ -14,8 +14,15 @@ const LinkEditable = ({
   children,
 }: LinkEditableProps) => {
   const { url } = contentState.getEntity(entityKey).getData();
+
   return (
-    <a href={url} title={url} className={formatStyles.link}>
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      title={url}
+      className={formatStyles.link}
+    >
       {children}
     </a>
   );

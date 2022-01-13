@@ -1,5 +1,9 @@
 # Changelog
 
+## **v1.2.2**
+**Fixes**
+- add `rel="noopener noreferrer"` to anchor
+
 ## v1.2.1
 **Fixes**
 - move svg icons css to inline styles
