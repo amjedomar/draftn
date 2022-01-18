@@ -12,7 +12,7 @@ import LinkIcon from '../icons/LinkIcon';
 import LinkOffIcon from '../icons/LinkOffIcon';
 import phrases from '../data/phrases';
 import styles from '../styles/Toolbar.css';
-import { DraftnUploadHandler } from './DraftnEditor';
+import { DraftnFormat, DraftnUploadHandler } from './DraftnEditor';
 import { DraftnRestrictions } from '..';
 import parseExt from '../utils/parseExt';
 
@@ -25,6 +25,7 @@ interface ToolbarProps {
   editorState: EditorState;
   lang: 'en' | 'ar';
   restrictions?: DraftnRestrictions;
+  exclude: DraftnFormat[];
   plugins: {
     imagePlugin: ImageEditorPlugin;
     linkPlugin: LinkEditorPlugin;
@@ -148,7 +149,7 @@ class Toolbar extends Component<ToolbarProps, ToolbarState> {
   };
 
   render() {
-    const { editorState, restrictions, lang } = this.props;
+    const { editorState, restrictions, lang, exclude } = this.props;
     const { isUploading } = this.state;
     const currentInlineStyles = editorState.getCurrentInlineStyle();
     const currentBlockType = RichUtils.getCurrentBlockType(editorState);
@@ -161,51 +162,69 @@ class Toolbar extends Component<ToolbarProps, ToolbarState> {
         <Backdrop show={isUploading} />
 
         <div className={clsx(styles.root, styles[langDir])}>
-          {inlineStyleButtons.map(({ type, icon, title }) => (
-            <ToolbarButton
-              key={type}
-              title={title}
-              checked={isClientSide && currentInlineStyles.has(type)}
-              data-style={type}
-              onMouseDown={this.toggleInlineStyle}
+          {inlineStyleButtons
+            .filter(
+              (inlineStyle) =>
+                !exclude.includes(
+                  inlineStyle.type.toLowerCase() as DraftnFormat,
+                ),
+            )
+            .map(({ type, icon, title }) => (
+              <ToolbarButton
+                key={type}
+                title={title}
+                checked={isClientSide && currentInlineStyles.has(type)}
+                data-style={type}
+                onMouseDown={this.toggleInlineStyle}
+              >
+                {icon}
+              </ToolbarButton>
+            ))}
+
+          {blockTypeButtons
+            .filter(
+              (block) =>
+                !exclude.includes(block.type as DraftnFormat),
+            )
+            .map(({ type, icon, title }) => (
+              <ToolbarButton
+                key={type}
+                title={title}
+                checked={isClientSide && currentBlockType === type}
+                data-block={type}
+                onMouseDown={this.toggleBlockType}
+              >
+                {icon}
+              </ToolbarButton>
+            ))}
+
+          {!exclude.includes('image') && (
+            <ToolbarFileInput
+              ref={this.imageInputRef}
+              onPick={this.handleFilePick('image')}
+              id="image-input"
+              title="Ctrl+G"
+              lang={lang}
+              extensions={restrictions?.imageExtensions}
             >
-              {icon}
-            </ToolbarButton>
-          ))}
+              <ImageIcon />
+            </ToolbarFileInput>
+          )}
 
-          {blockTypeButtons.map(({ type, icon, title }) => (
-            <ToolbarButton
-              key={type}
-              title={title}
-              checked={isClientSide && currentBlockType === type}
-              data-block={type}
-              onMouseDown={this.toggleBlockType}
-            >
-              {icon}
-            </ToolbarButton>
-          ))}
+          {!exclude.includes('link') && (
+            <>
+              <ToolbarButton title="Ctrl+L" onMouseDown={this.handleAddLink}>
+                <LinkIcon />
+              </ToolbarButton>
 
-          <ToolbarFileInput
-            ref={this.imageInputRef}
-            onPick={this.handleFilePick('image')}
-            id="image-input"
-            title="Ctrl+G"
-            lang={lang}
-            extensions={restrictions?.imageExtensions}
-          >
-            <ImageIcon />
-          </ToolbarFileInput>
-
-          <ToolbarButton title="Ctrl+L" onMouseDown={this.handleAddLink}>
-            <LinkIcon />
-          </ToolbarButton>
-
-          <ToolbarButton
-            title="Ctrl+Shift+L"
-            onMouseDown={this.handleRemoveLink}
-          >
-            <LinkOffIcon />
-          </ToolbarButton>
+              <ToolbarButton
+                title="Ctrl+Shift+L"
+                onMouseDown={this.handleRemoveLink}
+              >
+                <LinkOffIcon />
+              </ToolbarButton>
+            </>
+          )}
         </div>
       </>
     );

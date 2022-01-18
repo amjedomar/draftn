@@ -52,6 +52,19 @@ export type DraftnUploadHandler = (
   failure: () => void,
 ) => void;
 
+export type DraftnFormat =
+  | 'bold'
+  | 'italic'
+  | 'underline'
+  | 'strikethrough'
+  | 'header-two'
+  | 'header-three'
+  | 'ordered-list-item'
+  | 'unordered-list-item'
+  | 'blockquote'
+  | 'image'
+  | 'link';
+
 export interface DraftnEditorProps {
   editorState: EditorState;
   onChange: DraftnChangeHandler;
@@ -59,6 +72,7 @@ export interface DraftnEditorProps {
   lang?: DraftnLang;
   restrictions?: DraftnRestrictions;
   editorKey?: string;
+  exclude?: DraftnFormat[];
   className?: string;
   style?: CSSProperties;
 }
@@ -85,14 +99,19 @@ class DraftnEditor extends Component<DraftnEditorProps> {
   };
 
   handleChange: DraftnChangeHandler = (editorState: EditorState) => {
-    const { editorState: prevEditorState, restrictions, onChange } = this.props;
+    const {
+      editorState: prevEditorState,
+      restrictions,
+      onChange,
+      exclude = [],
+    } = this.props;
 
     const shouldFilter =
       editorState.getCurrentContent() !== prevEditorState.getCurrentContent() &&
       editorState.getLastChangeType() === 'insert-fragment';
 
     const updatedEditorState = shouldFilter
-      ? filterEditorState(editorState, restrictions)
+      ? filterEditorState(editorState, exclude, restrictions)
       : editorState;
 
     onChange(updatedEditorState);
@@ -105,12 +124,21 @@ class DraftnEditor extends Component<DraftnEditorProps> {
   };
 
   handleKeyCommand = (command: EditorCommand): DraftHandleValue => {
-    const { editorState, onChange, lang, restrictions } = this
-      .props as PropsWithDefaults;
+    const {
+      editorState,
+      onChange,
+      lang,
+      restrictions,
+      exclude = [],
+    } = this.props as PropsWithDefaults;
 
     let updatedEditorState: EditorState | undefined;
 
-    if (['bold', 'italic', 'underline', 'strikethrough'].includes(command)) {
+    if (
+      ['bold', 'italic', 'underline', 'strikethrough']
+        .filter((inlineStyle) => !exclude.includes(inlineStyle as DraftnFormat))
+        .includes(command)
+    ) {
       updatedEditorState = RichUtils.toggleInlineStyle(
         editorState,
         command.toLocaleUpperCase(),
@@ -124,7 +152,9 @@ class DraftnEditor extends Component<DraftnEditorProps> {
         'ordered-list-item',
         'unordered-list-item',
         'blockquote',
-      ].includes(command)
+      ]
+        .filter((block) => !exclude.includes(block as DraftnFormat))
+        .includes(command)
     ) {
       updatedEditorState = RichUtils.toggleBlockType(editorState, command);
     }
@@ -210,13 +240,13 @@ class DraftnEditor extends Component<DraftnEditorProps> {
   };
 
   getEditorState = () => {
-    const { editorState, restrictions } = this.props;
+    const { editorState, restrictions, exclude = [] } = this.props;
 
     if (this.isChanged) {
       return editorState;
     }
 
-    return filterEditorState(editorState, restrictions);
+    return filterEditorState(editorState, exclude, restrictions);
   };
 
   handlePastedText = (
@@ -224,7 +254,7 @@ class DraftnEditor extends Component<DraftnEditorProps> {
     html: string,
     editorState: EditorState,
   ): DraftHandleValue => {
-    const { onChange } = this.props;
+    const { onChange, exclude = [], restrictions } = this.props;
 
     const newState = handleDraftEditorPastedText(
       html,
@@ -232,7 +262,7 @@ class DraftnEditor extends Component<DraftnEditorProps> {
     ) as EditorState;
 
     if (newState) {
-      onChange(newState);
+      onChange(filterEditorState(newState, exclude, restrictions));
       return 'handled';
     }
 
@@ -240,8 +270,15 @@ class DraftnEditor extends Component<DraftnEditorProps> {
   };
 
   render() {
-    const { onUploadFile, lang, restrictions, editorKey, className, style } =
-      this.props as PropsWithDefaults;
+    const {
+      onUploadFile,
+      lang,
+      restrictions,
+      editorKey,
+      exclude = [],
+      className,
+      style,
+    } = this.props as PropsWithDefaults;
 
     const editorState = this.getEditorState();
 
@@ -256,13 +293,19 @@ class DraftnEditor extends Component<DraftnEditorProps> {
 
     return (
       <div
-        className={clsx('DraftnComponent', styles.root, styles[langDir], className)}
+        className={clsx(
+          'DraftnComponent',
+          styles.root,
+          styles[langDir],
+          className,
+        )}
         style={style}
       >
         <Toolbar
           editorState={editorState}
           lang={lang}
           restrictions={restrictions}
+          exclude={exclude}
           plugins={{ imagePlugin, linkPlugin }}
           setRefs={this.setRefs}
           onChange={this.handleChange}

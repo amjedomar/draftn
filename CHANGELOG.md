@@ -1,5 +1,9 @@
 # Changelog
 
+## **v1.3.0**
+**Features**
+- support exclude editor formats
+
 ## **v1.2.2**
 **Fixes**
 - add `rel="noopener noreferrer"` to anchor
